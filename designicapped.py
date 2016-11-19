@@ -32,7 +32,6 @@ def mongodb_write(object, DB = db):
         #TODO: field verification here
 
         result = DB.designicapped.save(data)
-        # print result
         return result
 
     return write(object)
@@ -44,7 +43,6 @@ def mongodb_readall(DB= db):
     #print ("fetched %s items" %len(all))
     return all
     #print closestBelow[0]
-
 
 
 def fetch_images_and_save_to_db(keyword = "bedroom"):
