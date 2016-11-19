@@ -295,7 +295,6 @@ class PinterestPinata(object):
                                               referrer=u'https://www.pinterest.com/search/pins/?q=' + query,
                                               ajax=True)
 
-        print res
         data = json.loads(res)
         children = data['module']['tree']['children']
         res = []

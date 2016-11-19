@@ -4,14 +4,14 @@ from pymongo import MongoClient
 
 from keys import email, username, password, mongoURI
 
-pinata = PinterestPinata(email=email, password=password, username=username)
-#pinata.create_board(name='my test board', category='food_drink', description='my first board')
 
 
-images = pinata.search_pins(query="bedroom")
 
-
-#print images
+def get_pins(keyword = None):
+    pinata = PinterestPinata(email=email, password=password, username=username)
+    # pinata.create_board(name='my test board', category='food_drink', description='my first board')
+    images = pinata.search_pins(query=keyword)
+    return images
 
 
 def init_db():
@@ -47,17 +47,19 @@ def mongodb_readall(DB= db):
 
 
 
-
-obj = {"test": "test123"}
-
-mongodb_write(obj)
-
-all_saved_items = mongodb_readall()
-for item in all_saved_items:
-    print item
-    item["new_field"] = "new_v2alue"
-    mongodb_write(item)
+def fetch_images_and_save_to_db(keyword = "bedroom"):
+    pins = get_pins(keyword=keyword)
+    for pin in pins:
+        mongodb_write(pin)
 
 
+def update_db_example():
+    all_saved_items = mongodb_readall()
+    for item in all_saved_items:
+        print item
+        item["new_field"] = "new_v2alue"
+        mongodb_write(item)
 
 
+
+fetch_images_and_save_to_db()
