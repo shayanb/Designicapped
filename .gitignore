@@ -1,3 +1,5 @@
 keys.py
 *.xml
 *.pyc
+.idea/workspace.xml
+.idea/
